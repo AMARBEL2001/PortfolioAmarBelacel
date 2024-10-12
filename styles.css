@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    padding-top: 50px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal squares per line */
+    gap: 10px;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.image-container {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-50px); /* Start off to the left */
+    transition: all 0.8s ease-out; /* Smooth animation */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateX(0); /* Move to original position */
+}
+
+.image-container:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.image-container:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.image-container:nth-child(3) {
+    transition-delay: 0.3s;
+}
+.image-container:nth-child(4) {
+    transition-delay: 0.4s;
+}
+.image-container:nth-child(5) {
+    transition-delay: 0.5s;
+}
+.image-container:nth-child(6) {
+    transition-delay: 0.6s;
+}
+.image-container:nth-child(7) {
+    transition-delay: 0.7s;
+}
+.image-container:nth-child(8) {
+    transition-delay: 0.8s;
+}
+.image-container:nth-child(9) {
+    transition-delay: 0.9s;
+}
+/* Add more delays for more images */

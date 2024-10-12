@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Project 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Project Details Section -->
+    <section class="project-details">
+        <div class="container">
+            <!-- Project Title -->
+            <h1 class="project-title">Web application Automatiser les services Algerietelecom</h1>
+
+            <!-- Company Section -->
+            <div class="project-company">
+                <img src="logo.png" alt="Company Logo" class="company-logo">
+                <div class="company-info">
+                    <p><strong>Company:</strong> Algerietelecom</p>
+                </div>
+            </div>
+
+            <!-- Project Description -->
+            <div class="project-description">
+                <h2>Description</h2>
+                <p>This project automates the services of Algerietelecom by developing a web application that
+                    streamlines internal processes and provides an intuitive user experience. The goal is to automate
+                    key functionalities efficiently.</p>
+            </div>
+
+            <!-- Project Images with Horizontal Scroll -->
+            <div class="project-images">
+                <h2>Project Screenshots</h2>
+                <div class="image-gallery">
+                    <img src="image.png" alt="Project Screenshot 1" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 2" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 3" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 4" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 5" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 6" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 7" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 8" onclick="openModal(this.src)">
+                    <img src="image.png" alt="Project Screenshot 9" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <button class="back-button" onclick="window.history.back();">Go Back</button>
+
+    </section>
+
+    <!-- Modal for displaying the image -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
