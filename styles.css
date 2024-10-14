@@ -1,71 +1,545 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar Styles */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: black;
+    color: #fff;
+    padding: 1rem 0;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-    padding-top: 50px;
+    width: 100%;
 }
 
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three equal squares per line */
-    gap: 10px;
-    width: 80%;
-    max-width: 1200px;
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.image-container {
-    position: relative;
-    opacity: 0;
-    transform: translateX(-50px); /* Start off to the left */
-    transition: all 0.8s ease-out; /* Smooth animation */
+.nav-links li {
+    margin: 0 15px;
 }
 
-.image-container img {
+.separator {
+    color: #fff;
+    margin: 0 10px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #caaf6c;
+}
+
+/* Responsive for smaller devices */
+@media (max-width: 400px) {
+    .navbar {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .separator {
+        display: none; /* Optional: hide separators on very small devices */
+    }
+}
+
+@media (max-width: 320px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .nav-links li {
+        margin: 8px 0;
+        font-size: 0.8rem; /* Reduce font size for extra-small screens */
+    }
+
+    .header {
+        padding: 5px;
+    }
+}
+
+/* Landing Section */
+.landing {
+    height: 100vh;
+    background: linear-gradient(to right, #fed7aa, #d1d5db);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.profile-picture {
+    margin-top: 100px; /* Create space from the navbar */
+}
+
+.profile-picture img {
+    width: 40vw; /* Default width based on viewport width */
+    max-width: 200px; /* Limit the maximum size */
+    height: 40vw; /* Equal to width to maintain a perfect circle */
+    max-height: 200px; /* Match max-height to max-width */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 50%; /* Make the image circular */
+}
+
+.landing h1, .landing h2 {
+    font-size: 3rem;
+    color: black;
+}
+
+.landing p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: black;
+}
+
+.cta-btn {
+    padding: 10px 25px;
+    background-color: black;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: rgb(220, 198, 157);
+}
+
+/* About Section */
+.about {
+    padding: 4rem 0;
+    background-color: #fff;
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.about p {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    color: #666;
+}
+
+
+/* Languages I Master Section */
+.languages {
+    padding: 4rem 0;
+    background: linear-gradient(to right, #fed7aa, #d1d5db);
+}
+
+.languages h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Language Grid: Responsive and Centered */
+.language-grid {
+    display: flex;
+    justify-content: space-evenly; /* Evenly space icons */
+    flex-wrap: wrap; /* Allow wrapping of items */
+    gap: 20px; /* Space between icons */
+    max-width: 1200px; /* Limit maximum width */
+    margin: 0 auto; /* Center the grid */
+    padding: 0 20px; /* Add padding on the sides */
+}
+
+/* Language Item: Responsive and Dynamic */
+.language-item {
+    flex: 1 1 150px; /* Base size of 150px */
+    max-width: 150px; /* Maximum width for icons */
+    height: 150px; /* Fixed height for each icon */
+    opacity: 0; /* Hidden initially for scroll effect */
+    transform: translateX(-50px); /* Start position for animation */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Smooth transition */
+}
+
+.language-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+    object-fit: contain; /* Ensure image fits the icon area without cutting off */
+    border-radius: 8px; /* Rounded corners */
 }
 
+/* Visible Class for Animation */
 .visible {
     opacity: 1;
-    transform: translateX(0); /* Move to original position */
+    transform: translateX(0); /* Smooth appearance from left */
 }
 
-.image-container:nth-child(1) {
-    transition-delay: 0.1s;
+/* Staggered Animation for Icons */
+.language-item:nth-child(1) { transition-delay: 0.2s; }
+.language-item:nth-child(2) { transition-delay: 0.4s; }
+.language-item:nth-child(3) { transition-delay: 0.6s; }
+.language-item:nth-child(4) { transition-delay: 0.8s; }
+.language-item:nth-child(5) { transition-delay: 1s; }
+.language-item:nth-child(6) { transition-delay: 1.2s; }
+
+/* Responsive Adjustments */
+
+/* For Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    .language-item {
+        flex: 1 1 120px; /* Shrink icons a bit */
+        max-width: 120px; /* Max width for tablets */
+        height: 120px; /* Adjust height accordingly */
+    }
 }
-.image-container:nth-child(2) {
-    transition-delay: 0.2s;
+
+/* For Large Phones */
+@media (max-width: 768px) {
+    .language-item {
+        flex: 1 1 100px; /* Smaller size for large phones */
+        max-width: 100px; /* Max width for large phones */
+        height: 100px; /* Adjust height */
+    }
 }
-.image-container:nth-child(3) {
-    transition-delay: 0.3s;
+
+/* For Regular Phones */
+@media (max-width: 480px) {
+    .language-item {
+        flex: 1 1 80px; /* Very small size for regular phones */
+        max-width: 80px; /* Max width for regular phones */
+        height: 80px; /* Adjust height */
+    }
 }
-.image-container:nth-child(4) {
-    transition-delay: 0.4s;
+
+/* For Small Phones */
+@media (max-width: 320px) {
+    .language-item {
+        flex: 1 1 60px; /* Smallest size for small phones */
+        max-width: 60px; /* Max width for small phones */
+        height: 60px; /* Adjust height */
+    }
 }
-.image-container:nth-child(5) {
-    transition-delay: 0.5s;
+
+
+/* Projects Section */
+.projects {
+    padding: 4rem 0;
+    background-color: #f4f4f4;
 }
-.image-container:nth-child(6) {
-    transition-delay: 0.6s;
+
+.projects h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }
-.image-container:nth-child(7) {
-    transition-delay: 0.7s;
+
+/* Project Grid */
+.project-grid {
+    display: flex; /* Keep flex to allow responsiveness */
+    flex-direction: column; /* Arrange items in a column */
+    gap: 20px; /* Space between project cards */
+    max-width: 100%; /* Set a max width for the grid */
+    margin: 0 auto; /* Center the grid on the page */
+    padding: 0 20px; /* Add padding to prevent edge-to-edge layout */
 }
-.image-container:nth-child(8) {
-    transition-delay: 0.8s;
+
+/* Project Card */
+.project-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Stack contents vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center;
+    transition: transform 0.3s; /* Optional: Add hover effect */
+    max-width: 100%;
+    text-decoration: none;
+    color: inherit;
 }
-.image-container:nth-child(9) {
-    transition-delay: 0.9s;
+
+.project-card img {
+    width: 50%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    max-height: 150px; /* Optional: set a max height for images */
 }
-/* Add more delays for more images */
+
+.project-card h3 {
+    margin: 10px 0;
+    font-size: 1.5rem; /* Adjust the size as needed */
+}
+
+.project-card p {
+    margin: 5px 0; /* Add margin for spacing between text */
+}
+
+.project-card .description {
+    margin-top: auto; /* Push the description to the bottom of the card */
+}
+
+/* Hover effect */
+.project-card:hover {
+    transform: scale(1.02); /* Slightly scale up the card on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-card h3 {
+        font-size: 1.2rem; /* Reduce size for smaller screens */
+    }
+
+    .project-card img {
+        max-height: 120px; /* Reduce image height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card h3 {
+        font-size: 1rem; /* Further reduce size for very small screens */
+    }
+
+    .project-card img {
+        max-height: 100px; /* Reduce image height for very small screens */
+    }
+}
+
+
+/* Certification Section */
+.certification {
+    padding: 4rem 0;
+    background-color: #f4f4f4;
+}
+
+.certification h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.certification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.certification-card {
+    text-align: center;
+    border: 1px solid #ccc; /* Optional border for better visibility */
+    padding: 10px; /* Space around content */
+    border-radius: 8px; /* Round the corners */
+    transition: box-shadow 0.3s ease; /* Shadow effect on hover */
+}
+
+.certification-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.certification-card img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.certification-card img:hover {
+    transform: scale(1.05);
+}
+
+.certification-card h3 {
+    margin: 0.5rem 0 0.2rem 0; /* Spacing for title */
+    font-size: 1.2rem; /* Title font size */
+}
+
+.certification-card .description {
+    color: #666; /* Description color */
+    font-size: 0.9rem; /* Description font size */
+}
+
+
+
+
+/* Contact Section */
+.contact {
+    padding: 4rem 0;
+    background-color: #fff;
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    padding: 10px 25px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #e67e22;
+}
+
+
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: black;
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 10px; /* Adjust spacing as needed */
+    font-size: 24px; /* Icon size */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #caaf6c; /* Change color on hover */
+}
+
+
+
+
+/* Responsive Design Adjustments */
+
+/* For Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    .profile-picture img {
+        width: 35vw;
+        height: 35vw;
+        max-width: 140px;
+        max-height: 140px;
+    }
+
+    .language-item img {
+        max-width: 70%;
+    }
+}
+
+/* For Large Phones */
+@media (max-width: 768px) {
+    .profile-picture img {
+        width: 40vw;
+        height: 40vw;
+        max-width: 120px;
+        max-height: 120px;
+    }
+
+    .language-item img {
+        max-width: 60%;
+    }
+}
+
+/* For Regular Phones */
+@media (max-width: 480px) {
+    .profile-picture img {
+        width: 50vw;
+        height: 50vw;
+        max-width: 75px;
+        max-height: 75px;
+    }
+
+    .language-item img {
+        max-width: 50%;
+    }
+}
+
+/* For Small Phones */
+@media (max-width: 320px) {
+    .profile-picture img {
+        width: 60vw;
+        height: 60vw;
+        max-width: 50px;
+        max-height: 50px;
+    }
+}
+
+/* For Very Small Devices */
+@media (max-width: 280px) {
+    .profile-picture img {
+        width: 70vw;
+        height: 70vw;
+        max-width: 44px;
+        max-height: 44px;
+    }
+}
+
+@media (max-width: 220px) {
+    .profile-picture img {
+        width: 80vw;
+        height: 80vw;
+        max-width: 34px;
+        max-height: 34px;
+    }
+}
